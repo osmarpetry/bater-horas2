@@ -1,5 +1,5 @@
 import Axios, { AxiosError } from 'axios';
-import { format } from 'date-fns';
+import { add, format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import useSWR, { mutate, trigger } from 'swr';
 import useDebounce from 'useDebouce';
@@ -68,6 +68,7 @@ function App() {
         Create new point
       </button>
       <p>You worked {handPointHours(data).toFixed(2)} hours</p>
+      {data.length % 2 !== 0 && <p>You should have do a exit handpoint</p> }
       <table>
         <thead>
           <tr>
