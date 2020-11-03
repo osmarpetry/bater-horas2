@@ -44,6 +44,7 @@ function App() {
 
   return (
     <main>
+      {!navigator.onLine && <p>You're offline!</p>}
       <h1>Bater horas</h1>
       <button
         onClick={async () => {
