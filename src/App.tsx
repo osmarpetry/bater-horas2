@@ -1,7 +1,9 @@
 import Axios, { AxiosError } from 'axios';
+import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import useSWR, { mutate, trigger } from 'swr';
 import useDebounce from 'useDebouce';
+import { handPointHours } from 'utils/handpoint';
 
 interface PontosData {
   created_at: Date;
@@ -65,6 +67,7 @@ function App() {
       >
         Create new point
       </button>
+      <p>You worked {handPointHours(data).toFixed(2)} hours</p>
       <table>
         <thead>
           <tr>
@@ -80,7 +83,7 @@ function App() {
 
             return (
               <tr key={id}>
-                <td>{created_at}</td>
+                <td>{format(new Date(created_at), 'yy-mm-dd HH:mm:ss')}</td>
                 <td>
                   <Notes value={note} onChange={handleNoteChange} />
                 </td>
